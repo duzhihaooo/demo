@@ -11,8 +11,10 @@ public class HomeWorkShi1 {
 		
 		/**
 		 * https://colobu.com/2016/03/02/Java-Stream/
+		 * map第六题
 		 *
 		 *
 		 * https://blog.csdn.net/u010046908/article/details/100580093
+		 * 前5个
 		 */
 }
