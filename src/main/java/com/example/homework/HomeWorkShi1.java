@@ -15,6 +15,14 @@ public class HomeWorkShi1 {
 		//5.将个LIst<List>的集合转换为List集合fori foreach stream
 		//6.将List集合转换为Map 其中key为里面的元素乘以10 value：为元素本身 （使用foreach、fori、stream（这里可以看下Collection.toMap）） 扩展提
 		//7.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，然后通过	.distinct()去重，然后收集
+		/**
+		 * 1.steam将里面每一元素进行计算
+		 * 2..map()每一个元素+1 ；List（元素，元素+1）
+		 * 1 转换List（1，2）.map()
+		 * 2 转换List（2，3）.map()
+		 * .。。。。
+		 * flatMap List
+		 */
 		//8.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，取出最大值
 		//9.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，取出最小值
 		//10.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，取出平均数
