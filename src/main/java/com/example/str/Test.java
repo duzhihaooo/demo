@@ -17,7 +17,7 @@ public class Test {
 		System.out.println(s1);			//你好阿玛卡巴卡！哈哈哈哈
 		
 		String str2 = "老师喜欢学生";
-		//contain  看字符串是否包含xxxx
+		//contains  看字符串是否包含xxxx
 		System.out.println(str2.contains("喜欢"));		//true
 		System.out.println(str2.contains("不要"));		//false
 		
