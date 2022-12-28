@@ -14,6 +14,16 @@ public class HomeWorkShi1 {
 		//4.将2，和3的集合放到一个LIst<List>集合中
 		//5.将个LIst<List>的集合转换为List集合fori foreach stream
 		//6.将List集合转换为Map 其中key为里面的元素乘以10 value：为元素本身 （使用foreach、fori、stream（这里可以看下Collection.toMap）） 扩展提
+		//7.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，然后通过	.distinct()去重，然后收集
+		//8.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，取出最大值
+		//9.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，取出最小值
+		//10.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，取出平均数
+		//11.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，取出平均数mapToInt().average()
+		//12.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，通过noneMatch、allMatch、anyMatch 进行对应的判断，自行发挥
+		//13.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，然后跳过前3个元素之后，获取最小值
+		//14.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，然后进行从大到小的排序，之后获取最大值
+		//15.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，获取大于10的，并获取第一个元素
+		//16.先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，获取大于5的，并获取任意一个元素
 		
 			/**
 		 * https://colobu.com/2016/03/02/Java-Stream/
@@ -30,6 +40,14 @@ public class HomeWorkShi1 {
 		
 		
 		public static void main(String[] args) {
+			List<String> rdd1 = new ArrayList<>() {{
+						add("this is test");
+						add("hello world");
+				}};
+			rdd1.stream()
+							.map(i->i.split(" "))
+							.flatMap(i->Arrays.stream(i))
+							.collect(Collectors.toList());
 			//Q1:转换为一个数组
 			String str1 = "1|2|3|4|5|6|7";
 			String ss[] = str1.split("\\|");	//  “.”和“|”都是转义字符，必须得加"\\";
@@ -82,7 +100,7 @@ public class HomeWorkShi1 {
 			//例子：List<Integer> intListNew = intList.stream().map(x -> x + 3).collect(Collectors.toList());
 			//ArrayList<String> listStreamAddOne = new ArrayList<>();
 			//通过对List.stream().map() 可以拿到流中的每个元素 对其进行操作后 再通过收集器collect收集回流中
-			ArrayList<String> listStreamAddOne = (ArrayList<String>) listStream.stream().map(x -> (Integer.parseInt(x)+1)+"").collect(Collectors.toList());
+			List<String> listStreamAddOne = listStream.stream().map(x -> (Integer.parseInt(x)+1)+"").collect(Collectors.toList());
 			System.out.println("对listStream的元素+1:" + listStreamAddOne);
 			
 			//Q4:将2，和3的集合放到一个LIst<List>集合中
@@ -110,8 +128,14 @@ public class HomeWorkShi1 {
 			System.out.println("新ListForEach:" + listSimpleForEach);
 			//stream
 			//todo:对flatmap用法模糊
-			List<String> listSimpleStream = listList.stream().flatMap(Collection::stream).collect(Collectors.toList());
+			List<String> listSimpleStream = listList.stream().flatMap(i->i.stream()).collect(Collectors.toList());
 			System.out.println("新ListStream:" + listSimpleStream);
+				System.err.println(listList);
+				listList
+								.stream()
+								.flatMap(i->i.stream())
+								.distinct()
+								.collect(Collectors.toList());
 			
 			//Q6:将List集合转换为Map 其中key为里面的元素乘以10 value：为元素本身 （使用foreach、fori、stream（这里可以看下Collection.toMap））
 			//定义一个Map的容器对象
@@ -130,5 +154,7 @@ public class HomeWorkShi1 {
 			
 			
 		}
-
+		
+	
+	
 }
