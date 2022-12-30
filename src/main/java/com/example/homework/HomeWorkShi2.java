@@ -1,8 +1,10 @@
 package com.example.homework;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class HomeWorkShi2 {
 	///数据1|2|3|4|5|6|7
@@ -50,8 +52,8 @@ public class HomeWorkShi2 {
 		System.out.println(listNewListOneToTwo8);	//[[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8]]
 		//todo:flatmap -> max 打平了之和我想都收集之后再进行比较怎么做
 		//todo:不确定这样是不是对的
-		//todo:Integer::compare  不用双引号该怎么写
-		int maxNum = listNewListOneToTwo8.stream().flatMap(x->x.stream()).max(Integer::compare).get();
+		//todo:Integer::compare  不用双引号该怎么写:Comparator.comparing(i->i.intValue())
+		int maxNum = listNewListOneToTwo8.stream().flatMap(x->x.stream()).max(Comparator.comparing(i->i.intValue())).get();
 		System.out.println("newList中最大值："+maxNum);	//8
 		
 		//Q9:先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，取出最小值
@@ -67,12 +69,12 @@ public class HomeWorkShi2 {
 		System.out.println("newList中平均值："+averageNum);
 		
 		//Q11:先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，取出平均数mapToInt().average()
-		//todo:需要讲解mapToInt
+		//todo:需要讲解mapToInt mapTOInt 就是将一个元素或者一个对象转换为一个int的元素，点击mapToInt会发现里面是ToIntFunction的fuc函数
 		OptionalDouble averageMapToInt = listNewListOneToTwo10.stream().flatMap(x -> x.stream()).mapToInt(Integer::intValue).average();
 		System.out.println("mapToInt的平均值："+averageMapToInt.getAsDouble());
 		
 		//Q12:先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，通过noneMatch、allMatch、anyMatch 进行对应的判断
-		//todo：该题是不是先要用flatmap打平后生成新的list 再通过对newList生成流再调用noneMatch、allMatch、anyMatch方法
+		//todo：该题是不是先要用flatmap打平后生成新的list 再通过对newList生成流再调用noneMatch、allMatch、anyMatch方法：是的
 		final List<Integer> newList = listNewListOneToTwo10.stream().flatMap(x -> x.stream()).collect(Collectors.toList());
 		System.out.println("newList:"+newList);
 		boolean allmatch = newList.stream().allMatch(x->x.equals(1));
@@ -84,13 +86,13 @@ public class HomeWorkShi2 {
 		
 		//Q13:先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，然后跳过前3个元素之后，获取最小值
 		System.out.println("newList:"+newList);	//newList:[1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8]
-		//todo:Integer::compare  不用双引号的写法
+		//todo:Integer::compare  不用双引号的写法Comparator.comparing(i->i.intValue())
 		Integer minSkip3Num = newList.stream().skip(3).min(Integer::compare).get();
 		System.out.println("newList中跳过前3个元素之后，获取最小值："+minSkip3Num);
 		
 		//Q14:先执行第一1，然后转换为stream，通过.map操作将里面的元素+1,构成一个新的list集合，然后通过flatMap打平这个集合，然后进行从大到小的排序，之后获取最大值
 		System.out.println("newList:"+newList);	//newList:[1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8]
-		//todo:sorted(Comparator.reverseOrder())  自然序逆序元素
+		//todo:sorted(Comparator.reverseOrder())  自然序逆序元素 这个没问题
 		int numMAxHighToLow = newList.stream().sorted(Comparator.reverseOrder()).max(Integer::compare).get();
 		System.out.println(numMAxHighToLow);
 		
